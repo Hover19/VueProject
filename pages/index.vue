@@ -20,7 +20,15 @@
       </button>
     </div>
     <div class="tips-section">
-      <TipsInput />
+      <TipsInput ref="tipsInputRef" @update-tips="updateTipsAmount" />
+    </div>
+    <div class="payment-section">
+      <PaymentButtons
+        :tipsAmount="tipsAmount"
+        :activeEmployee="employees[currentIndex]"
+        :onConfirmTips="confirmTips"
+        :isServiceFeeEnabled="isServiceFeeEnabled"
+      />
     </div>
   </div>
 </template>
@@ -28,27 +36,33 @@
 <script setup>
 import { ref } from "vue";
 import EmployeeCard from "@/components/EmployeeCard.vue";
+import TipsInput from "@/components/TipsInput.vue";
+import PaymentButtons from "@/components/PaymentButtons.vue";
 
 const employees = [
   {
+    id: 1,
     photo: "/assets/employee.png",
     name: "John",
     position: "Waiter",
     tips: 0,
   },
   {
+    id: 2,
     photo: "/assets/employee.png",
     name: "Jane",
     position: "Waitress",
     tips: 0,
   },
   {
+    id: 3,
     photo: "/assets/employee.png",
     name: "Mike",
     position: "Bartender",
     tips: 0,
   },
   {
+    id: 4,
     photo: "/assets/employee.png",
     name: "Emily",
     position: "Manager",
@@ -57,6 +71,10 @@ const employees = [
 ];
 
 const currentIndex = ref(0);
+const tipsAmount = ref(0);
+const isServiceFeeEnabled = ref(true);
+
+let tipsInputRef = null;
 
 const previousEmployee = () => {
   if (currentIndex.value > 0) currentIndex.value--;
@@ -64,6 +82,25 @@ const previousEmployee = () => {
 
 const nextEmployee = () => {
   if (currentIndex.value < employees.length - 1) currentIndex.value++;
+};
+
+const updateTipsAmount = (amount) => {
+  tipsAmount.value = amount;
+};
+
+const confirmTips = () => {
+  employees[currentIndex.value].tips += tipsAmount.value;
+  alert(
+    `${employees[currentIndex.value].name} has received ${
+      tipsAmount.value
+    }€ in tips!`
+  );
+  tipsAmount.value = 0;
+  if (tipsInputRef) {
+    tipsInputRef.resetTips();
+  }
+
+  console.log(employees[currentIndex.value]);
 };
 </script>
 

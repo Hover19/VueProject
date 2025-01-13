@@ -2,7 +2,13 @@
   <div class="tips-input">
     <div class="tips-input__amount">
       <p class="label">Enter amount of tips</p>
-      <input id="tip-input" placeholder="0€" type="number" />
+      <input
+        id="tip-input"
+        :value="displayTip"
+        @input="onInputChange"
+        placeholder="0€"
+        type="text"
+      />
     </div>
     <div class="tips-input__buttons">
       <button @click="addTips(2)">2</button>
@@ -13,10 +19,33 @@
 </template>
 
 <script setup>
-const addTips = (amount) => {
-  const input = document.querySelector("#tip-input");
-  input.value = Number(input.value) + amount;
+import { ref, watch } from "vue";
+
+const currentTip = ref(null);
+
+const emit = defineEmits(["update-tips"]);
+
+const displayTip = computed(() => {
+  return currentTip.value !== null ? `${currentTip.value}€` : "";
+});
+
+const onInputChange = (event) => {
+  const sanitizedValue = event.target.value.replace(/[^\d]/g, "");
+  currentTip.value = sanitizedValue ? Number(sanitizedValue) : null;
+  emit("update-tips", currentTip.value || 0);
 };
+
+const addTips = (amount) => {
+  currentTip.value = (currentTip.value || 0) + amount;
+  emit("update-tips", currentTip.value);
+};
+
+const resetTips = () => {
+  currentTip.value = null;
+  emit("update-tips", 0);
+};
+
+defineExpose({ resetTips });
 </script>
 
 <style lang="scss" scope>
