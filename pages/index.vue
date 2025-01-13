@@ -1,22 +1,27 @@
 <template>
-  <div class="employee-section">
-    <button
-      @click="previousEmployee"
-      :disabled="currentIndex === 0"
-      class="arrow"
-    >
-      &larr;
-    </button>
+  <div class="homepage">
+    <div class="employee-section">
+      <button
+        @click="previousEmployee"
+        :disabled="currentIndex === 0"
+        class="arrow"
+      >
+        &larr;
+      </button>
 
-    <EmployeeCard :employee="employees[currentIndex]" />
+      <EmployeeCard :employee="employees[currentIndex]" />
 
-    <button
-      @click="nextEmployee"
-      :disabled="currentIndex === employees.length - 1"
-      class="arrow"
-    >
-      &rarr;
-    </button>
+      <button
+        @click="nextEmployee"
+        :disabled="currentIndex === employees.length - 1"
+        class="arrow"
+      >
+        &rarr;
+      </button>
+    </div>
+    <div class="tips-section">
+      <TipsInput />
+    </div>
   </div>
 </template>
 
@@ -62,27 +67,33 @@ const nextEmployee = () => {
 };
 </script>
 
-<style scoped>
-.employee-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 16px;
-  gap: 30px;
-}
+<style lang="scss" scoped>
+.homepage {
+  .employee-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    gap: 30px;
 
-.arrow {
-  background-color: var(--violet-color);
-  color: var(--white-color);
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 1rem;
-}
+    .arrow {
+      background-color: var(--violet-color);
+      color: var(--white-color);
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
 
-.arrow:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
+    .arrow:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+  }
+
+  .tips-section {
+    margin-top: 20px;
+  }
 }
 </style>

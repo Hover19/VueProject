@@ -39,6 +39,7 @@ const handleLanguageChange = (event) => {
     }
 
     select {
+      background-color: var(--body-color);
       border: none;
       font-weight: 500;
       font-size: 16px;
