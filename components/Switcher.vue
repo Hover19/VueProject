@@ -2,7 +2,7 @@
   <div class="switcher">
     <div class="switcher__description">
       <h1 class="title">
-        I want Mark to receive <br />
+        I want {{ employeeName }} to receive <br />
         the full amount
       </h1>
       <p class="subtitle">
@@ -14,7 +14,7 @@
       <n-switch
         :value="modelValue"
         @update:value="emitUpdate"
-        :theme-overrides="switchThemeOverrides"
+        :rail-style="railStyle"
       />
     </div>
   </div>
@@ -23,9 +23,29 @@
 <script setup>
 import { NSwitch } from "naive-ui";
 
+const railStyle = ({ focused, checked }) => {
+  const style = {};
+  if (checked) {
+    style.background = "#9771fd";
+    if (focused) {
+      style.boxShadow = "none";
+    }
+  } else {
+    style.background = "#8e6cea66";
+    if (focused) {
+      style.boxShadow = "none";
+    }
+  }
+  return style;
+};
+
 defineProps({
   modelValue: {
     type: Boolean,
+    required: true,
+  },
+  employeeName: {
+    type: String,
     required: true,
   },
 });
@@ -34,12 +54,6 @@ const emit = defineEmits(["update:modelValue"]);
 
 const emitUpdate = (value) => {
   emit("update:modelValue", value);
-};
-
-const switchThemeOverrides = {
-  railColor: "#8e6cea66",
-  raiBoxShadow: "none",
-  railColorActive: "#9771fd",
 };
 </script>
 
