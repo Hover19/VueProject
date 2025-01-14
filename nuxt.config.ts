@@ -11,9 +11,6 @@ export default defineNuxtConfig({
   app: {
     baseURL: "/",
   },
-  nitro: {
-    preset: "netlify",
-  },
   build: {
     analyze: true,
   },
