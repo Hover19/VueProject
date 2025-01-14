@@ -30,6 +30,7 @@
         :isServiceFeeEnabled="isServiceFeeEnabled"
       />
     </div>
+    <Switcher v-model="isServiceFeeEnabled" />
   </div>
 </template>
 
@@ -38,6 +39,7 @@ import { ref } from "vue";
 import EmployeeCard from "@/components/EmployeeCard.vue";
 import TipsInput from "@/components/TipsInput.vue";
 import PaymentButtons from "@/components/PaymentButtons.vue";
+import Switcher from "@/components/Switcher.vue";
 
 const employees = [
   {
@@ -72,7 +74,7 @@ const employees = [
 
 const currentIndex = ref(0);
 const tipsAmount = ref(0);
-const isServiceFeeEnabled = ref(true);
+const isServiceFeeEnabled = ref(false);
 
 let tipsInputRef = null;
 
