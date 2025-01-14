@@ -45,6 +45,8 @@ import { ref, computed } from "vue";
 import EmployeeCard from "@/components/EmployeeCard.vue";
 import TipsInput from "@/components/TipsInput.vue";
 import PaymentButtons from "@/components/PaymentButtons.vue";
+import LikeComponent from "@/components/LikeComponent.vue";
+import RateComponent from "@/components/RateComponent.vue";
 import Switcher from "@/components/Switcher.vue";
 
 const employees = [
