@@ -18,6 +18,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
+
 import { NRate } from "naive-ui";
 import BorderLine from "public/assets/rate-line.svg";
 

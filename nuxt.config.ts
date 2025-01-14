@@ -7,6 +7,9 @@ export default defineNuxtConfig({
   css: ["@/styles/main.scss", "@/styles/_mixins.scss"],
   vite: {
     plugins: [svgLoader()],
+    optimizeDeps: {
+      include: ["naive-ui"],
+    },
   },
   app: {
     baseURL: "/",
