@@ -25,7 +25,10 @@
     <div class="switcher-section">
       <Switcher v-model="isServiceFeeEnabled" :employeeName="currentEmployee" />
     </div>
-    <RateComponent v-model="currentRating" :rate-text="rateText" />
+    <div class="rates-section">
+      <RateComponent v-model="currentRating" :rate-text="rateText" />
+    </div>
+    <LikeComponent v-model="activeLikes" />
     <div class="payment-section">
       <PaymentButtons
         :tipsAmount="tipsAmount"
@@ -83,6 +86,7 @@ const currentIndex = ref(0);
 const tipsAmount = ref(0);
 const isServiceFeeEnabled = ref(false);
 const currentRating = ref(0);
+const activeLikes = ref([]);
 const currentEmployee = computed(() => employees[currentIndex.value].name);
 const rateText = "Rate your experience";
 let tipsInputRef = null;
@@ -100,10 +104,12 @@ const updateTipsAmount = (amount) => {
 };
 
 const confirmTips = () => {
+  console.log(activeLikes.value);
   employees[currentIndex.value].tips += tipsAmount.value;
   employees[currentIndex.value].rates.push({
     name: "Semen",
     rate: currentRating.value,
+    likes: [...activeLikes.value],
   });
   alert(
     `${employees[currentIndex.value].name} was updated: ${JSON.stringify(
@@ -114,6 +120,7 @@ const confirmTips = () => {
   );
   tipsAmount.value = 0;
   currentRating.value = 0;
+  activeLikes.value = [];
   console.log(currentRating.value);
   if (tipsInputRef) {
     tipsInputRef.resetTips();

@@ -4,7 +4,7 @@
       <div class="pay">To pay {{ tipsAmount || 0 }}€</div>
       <div class="fees">
         Service fees
-        {{ isServiceFeeEnabled ? Math.ceil(tipsAmount * 0.15) : 0 }} €
+        {{ isServiceFeeEnabled ? (tipsAmount * 0.012).toFixed(1) : 0 }} €
       </div>
     </div>
     <div class="payment-button__buttons">
