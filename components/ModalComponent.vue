@@ -2,7 +2,7 @@
   <div v-if="visible" class="modal-overlay" @click.self="closeModal">
     <div class="modal-content">
       <Close class="modal-content__close" @click="closeModal" />
-      <img src="/assets/modal-banner.png" alt="" />
+      <img src="public/assets/modal-banner.png" alt="" />
       <div class="modal-content__title">{{ title }}</div>
       <div class="modal-content__subtitle">{{ subtitle }}</div>
       <button class="modal-content__button">{{ buttonText }}</button>

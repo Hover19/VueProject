@@ -20,10 +20,10 @@
 import { ref, watch } from "vue";
 
 const items = [
-  { id: 1, image: "/assets/service.png", label: "Service" },
-  { id: 2, image: "/assets/clean.png", label: "Cleanliness" },
-  { id: 3, image: "/assets/atmosphere.png", label: "Atmosphere" },
-  { id: 4, image: "/assets/food.png", label: "Food quality" },
+  { id: 1, image: "public/assets/service.png", label: "Service" },
+  { id: 2, image: "public/assets/clean.png", label: "Cleanliness" },
+  { id: 3, image: "public/assets/atmosphere.png", label: "Atmosphere" },
+  { id: 4, image: "public/assets/food.png", label: "Food quality" },
 ];
 
 const { modelValue } = defineProps({
