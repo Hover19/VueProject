@@ -34,6 +34,14 @@
     <div class="feedback-section">
       <FeedbackComponent :title="feedbackText" v-model="feedbackValue" />
     </div>
+    <ModalComponent
+      :visible="isModalVisible"
+      @close="closeModal"
+      :title="modalTitle"
+      :subtitle="modalSubtitle"
+      :button-text="modalButtonText"
+    >
+    </ModalComponent>
     <div class="payment-section">
       <PaymentButtons
         :tipsAmount="tipsAmount"
@@ -53,6 +61,8 @@ import PaymentButtons from "@/components/PaymentButtons.vue";
 import LikeComponent from "@/components/LikeComponent.vue";
 import RateComponent from "@/components/RateComponent.vue";
 import FeedbackComponent from "@/components/FeedbackComponent.vue";
+import ModalComponent from "@/components/ModalComponent.vue";
+
 import Switcher from "@/components/Switcher.vue";
 
 const employees = [
@@ -99,7 +109,19 @@ const feedbackValue = ref("");
 const currentEmployee = computed(() => employees[currentIndex.value].name);
 const rateText = "Rate your experience";
 const feedbackText = "Share your feedback";
+const modalTitle = "Profit goes to SWEN";
+const modalSubtitle = "By leaving a tip, you take care of nature";
+const modalButtonText = "Learn more about SWEN";
 let tipsInputRef = null;
+const isModalVisible = ref(false);
+
+const openModal = () => {
+  isModalVisible.value = true;
+};
+
+const closeModal = () => {
+  isModalVisible.value = false;
+};
 
 const previousEmployee = () => {
   if (currentIndex.value > 0) currentIndex.value--;
@@ -114,7 +136,6 @@ const updateTipsAmount = (amount) => {
 };
 
 const confirmTips = () => {
-  console.log(activeLikes.value);
   employees[currentIndex.value].tips += tipsAmount.value;
   employees[currentIndex.value].rates.push({
     name: "Semen",
@@ -133,12 +154,11 @@ const confirmTips = () => {
   currentRating.value = 0;
   activeLikes.value = [];
   feedbackValue.value = "";
-  console.log(currentRating.value);
   if (tipsInputRef) {
     tipsInputRef.resetTips();
   }
 
-  console.log(employees[currentIndex.value]);
+  openModal();
 };
 </script>
 

@@ -18,10 +18,9 @@
 
 <script setup>
 import Logo from "public/assets/logo.svg";
-const languages = ["En", "Fr", "De"]; // Available languages
+const languages = ["En", "Fr", "De"];
 const handleLanguageChange = (event) => {
   const selectedLanguage = event.target.value;
-  console.log(`Switched to: ${selectedLanguage}`); // Logs the selected language
 };
 </script>
 
