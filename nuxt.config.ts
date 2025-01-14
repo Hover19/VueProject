@@ -15,4 +15,5 @@ export default defineNuxtConfig({
   },
 
   modules: ["nuxtjs-naive-ui"],
+  ssr: false,
 });
