@@ -14,4 +14,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: "netlify",
   },
+  build: {
+    analyze: true,
+  },
 });
