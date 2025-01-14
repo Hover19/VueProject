@@ -11,4 +11,7 @@ export default defineNuxtConfig({
   app: {
     baseURL: "VueProject",
   },
+  nitro: {
+    preset: "netlify",
+  },
 });
