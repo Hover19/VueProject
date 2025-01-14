@@ -10,5 +10,9 @@ export default defineNuxtConfig({
     plugins: [svgLoader()],
   },
 
+  app: {
+    baseURL: "/VueProject/",
+  },
+
   modules: ["nuxtjs-naive-ui"],
 });
