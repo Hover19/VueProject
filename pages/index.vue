@@ -28,7 +28,12 @@
     <div class="rates-section">
       <RateComponent v-model="currentRating" :rate-text="rateText" />
     </div>
-    <LikeComponent v-model="activeLikes" />
+    <div class="likes-section">
+      <LikeComponent v-model="activeLikes" />
+    </div>
+    <div class="feedback-section">
+      <FeedbackComponent :title="feedbackText" v-model="feedbackValue" />
+    </div>
     <div class="payment-section">
       <PaymentButtons
         :tipsAmount="tipsAmount"
@@ -47,6 +52,7 @@ import TipsInput from "@/components/TipsInput.vue";
 import PaymentButtons from "@/components/PaymentButtons.vue";
 import LikeComponent from "@/components/LikeComponent.vue";
 import RateComponent from "@/components/RateComponent.vue";
+import FeedbackComponent from "@/components/FeedbackComponent.vue";
 import Switcher from "@/components/Switcher.vue";
 
 const employees = [
@@ -89,8 +95,10 @@ const tipsAmount = ref(0);
 const isServiceFeeEnabled = ref(false);
 const currentRating = ref(0);
 const activeLikes = ref([]);
+const feedbackValue = ref("");
 const currentEmployee = computed(() => employees[currentIndex.value].name);
 const rateText = "Rate your experience";
+const feedbackText = "Share your feedback";
 let tipsInputRef = null;
 
 const previousEmployee = () => {
@@ -112,6 +120,7 @@ const confirmTips = () => {
     name: "Semen",
     rate: currentRating.value,
     likes: [...activeLikes.value],
+    feedback: [feedbackValue.value],
   });
   alert(
     `${employees[currentIndex.value].name} was updated: ${JSON.stringify(
@@ -123,6 +132,7 @@ const confirmTips = () => {
   tipsAmount.value = 0;
   currentRating.value = 0;
   activeLikes.value = [];
+  feedbackValue.value = "";
   console.log(currentRating.value);
   if (tipsInputRef) {
     tipsInputRef.resetTips();
