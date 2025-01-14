@@ -8,4 +8,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [svgLoader()],
   },
+  app: {
+    baseURL: "VueProject",
+  },
 });
