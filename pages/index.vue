@@ -68,7 +68,7 @@ import Switcher from "@/components/Switcher.vue";
 const employees = [
   {
     id: 1,
-    photo: "public/assets/employee.png",
+    photo: "assets/employee.png",
     name: "John",
     position: "Waiter",
     tips: 0,
@@ -76,7 +76,7 @@ const employees = [
   },
   {
     id: 2,
-    photo: "public/assets/employee.png",
+    photo: "assets/employee.png",
     name: "Jane",
     position: "Waitress",
     tips: 0,
@@ -84,7 +84,7 @@ const employees = [
   },
   {
     id: 3,
-    photo: "public/assets/employee.png",
+    photo: "assets/employee.png",
     name: "Mike",
     position: "Bartender",
     tips: 0,
@@ -92,7 +92,7 @@ const employees = [
   },
   {
     id: 4,
-    photo: "public/assets/employee.png",
+    photo: "assets/employee.png",
     name: "Emily",
     position: "Manager",
     tips: 0,
