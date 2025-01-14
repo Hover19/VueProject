@@ -30,12 +30,12 @@
         :isServiceFeeEnabled="isServiceFeeEnabled"
       />
     </div>
-    <Switcher v-model="isServiceFeeEnabled" />
+    <Switcher v-model="isServiceFeeEnabled" :employeeName="currentEmployee" />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import EmployeeCard from "@/components/EmployeeCard.vue";
 import TipsInput from "@/components/TipsInput.vue";
 import PaymentButtons from "@/components/PaymentButtons.vue";
@@ -75,6 +75,9 @@ const employees = [
 const currentIndex = ref(0);
 const tipsAmount = ref(0);
 const isServiceFeeEnabled = ref(false);
+
+const currentEmployee = computed(() => employees[currentIndex.value].name);
+console.log(currentEmployee);
 
 let tipsInputRef = null;
 
