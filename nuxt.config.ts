@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     plugins: [svgLoader()],
   },
   app: {
-    baseURL: "VueProject",
+    baseURL: "/",
   },
   nitro: {
     preset: "netlify",
