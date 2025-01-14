@@ -59,7 +59,6 @@ const emitUpdate = (value) => {
 
 <style lang="scss" scoped>
 .switcher {
-  margin: 12px 20px 0;
   padding: 16px;
   display: flex;
   align-items: center;

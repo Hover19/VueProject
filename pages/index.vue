@@ -22,6 +22,10 @@
     <div class="tips-section">
       <TipsInput ref="tipsInputRef" @update-tips="updateTipsAmount" />
     </div>
+    <div class="switcher-section">
+      <Switcher v-model="isServiceFeeEnabled" :employeeName="currentEmployee" />
+    </div>
+    <RateComponent v-model="currentRating" :rate-text="rateText" />
     <div class="payment-section">
       <PaymentButtons
         :tipsAmount="tipsAmount"
@@ -30,7 +34,6 @@
         :isServiceFeeEnabled="isServiceFeeEnabled"
       />
     </div>
-    <Switcher v-model="isServiceFeeEnabled" :employeeName="currentEmployee" />
   </div>
 </template>
 
@@ -48,6 +51,7 @@ const employees = [
     name: "John",
     position: "Waiter",
     tips: 0,
+    rates: [],
   },
   {
     id: 2,
@@ -55,6 +59,7 @@ const employees = [
     name: "Jane",
     position: "Waitress",
     tips: 0,
+    rates: [],
   },
   {
     id: 3,
@@ -62,6 +67,7 @@ const employees = [
     name: "Mike",
     position: "Bartender",
     tips: 0,
+    rates: [],
   },
   {
     id: 4,
@@ -69,16 +75,16 @@ const employees = [
     name: "Emily",
     position: "Manager",
     tips: 0,
+    rates: [],
   },
 ];
 
 const currentIndex = ref(0);
 const tipsAmount = ref(0);
 const isServiceFeeEnabled = ref(false);
-
+const currentRating = ref(0);
 const currentEmployee = computed(() => employees[currentIndex.value].name);
-console.log(currentEmployee);
-
+const rateText = "Rate your experience";
 let tipsInputRef = null;
 
 const previousEmployee = () => {
@@ -95,12 +101,20 @@ const updateTipsAmount = (amount) => {
 
 const confirmTips = () => {
   employees[currentIndex.value].tips += tipsAmount.value;
+  employees[currentIndex.value].rates.push({
+    name: "Semen",
+    rate: currentRating.value,
+  });
   alert(
-    `${employees[currentIndex.value].name} has received ${
-      tipsAmount.value
-    }€ in tips!`
+    `${employees[currentIndex.value].name} was updated: ${JSON.stringify(
+      employees[currentIndex.value],
+      null,
+      2
+    )}`
   );
   tipsAmount.value = 0;
+  currentRating.value = 0;
+  console.log(currentRating.value);
   if (tipsInputRef) {
     tipsInputRef.resetTips();
   }
@@ -136,6 +150,10 @@ const confirmTips = () => {
 
   .tips-section {
     margin-top: 20px;
+  }
+
+  .switcher-section {
+    margin: 12px 20px 0;
   }
 }
 </style>
