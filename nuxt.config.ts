@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: "/VueProject/",
+    baseURL: "/VueProject/dist/",
   },
 
   modules: ["nuxtjs-naive-ui"],
