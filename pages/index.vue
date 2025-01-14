@@ -25,7 +25,9 @@
     <div class="switcher-section">
       <Switcher v-model="isServiceFeeEnabled" :employeeName="currentEmployee" />
     </div>
-    <RateComponent v-model="currentRating" :rate-text="rateText" />
+    <div class="rates-section">
+      <RateComponent v-model="currentRating" :rate-text="rateText" />
+    </div>
     <div class="payment-section">
       <PaymentButtons
         :tipsAmount="tipsAmount"
